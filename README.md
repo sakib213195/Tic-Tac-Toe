@@ -1,2 +1,6 @@
 # Group10
-Muhammad Sakib Khan, Md. Taslim Imam Khan (Group 10)
+
+1520016042	Muhammad Sakib Khan	<muhammad.sakib@northsouth.edu>
+
+1520873642	Md. Taslim Imam Khan	<taslim.imam@northsouth.edu>
+
