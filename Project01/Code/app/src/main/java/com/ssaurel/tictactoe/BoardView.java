@@ -38,11 +38,12 @@ public class BoardView extends View {
     }
 
     public void setMainActivity(MainActivity a) {
-        activity = a;
+        this.activity = a;
     }
 
     public void setGameEngine(GameEngine g) {
-        gameEngine = g;
+
+        this.gameEngine = g;
     }
 
     @Override

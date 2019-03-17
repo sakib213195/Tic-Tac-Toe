@@ -1,23 +1,23 @@
 package com.ssaurel.tictactoe;
 
 import org.junit.Test;
+import android.content.Context;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by Khan Desktop on 17-Mar-19.
+ * Created by Khan Desktop on 18-Mar-19.
  */
 public class BoardViewTest {
     @Test
-    public void setMainActivity() throws Exception {
-    }
-
-    @Test
-    public void setGameEngine() throws Exception {
-    }
-
-    @Test
     public void onMeasure() throws Exception {
+        BoardView expected = new BoardView(null);
+        expected.onMeasure(1,1);
+        int input1=1;
+        int input2 =1;
+        BoardView actual = new BoardView(null);
+        actual.onMeasure(input1,input2);
+        assertEquals(expected,actual); // test failure occurs due to method unable to mock.
     }
 
     @Test
