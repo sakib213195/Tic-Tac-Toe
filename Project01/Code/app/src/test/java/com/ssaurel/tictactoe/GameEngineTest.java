@@ -19,11 +19,6 @@ public class GameEngineTest {
 
     @Test
     public void play() throws Exception {
-
-        final Random RANDOM = new Random();
-        char[] elts = new char[9];
-        char currentPlayer= 'X';
-        boolean ended = false;
         int input1 = 2;
         int input2 = 1;
         char expected= ' ' ;
