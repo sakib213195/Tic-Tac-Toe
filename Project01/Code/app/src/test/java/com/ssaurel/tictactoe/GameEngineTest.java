@@ -69,6 +69,8 @@ public class GameEngineTest {
 
     @Test
     public void newGame() throws Exception {
+
+        GameEngine test = new GameEngine(); //Constructor Called
     }
 
     @Test
