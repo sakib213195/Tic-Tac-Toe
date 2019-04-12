@@ -19,7 +19,7 @@ public class GameEngine {
 
     public char play(int x, int y) // play method sets mark of the Current Player on the grid (x,y)
     {
-        if (!ended && elts[3 * y + x] == ' ') //' ' represents an empty place at the grid where input can be placed
+        if (!ended && elt(x,y) == ' ') //' ' represents an empty place at the grid where input can be placed
         {
             elts[3 * y + x] = currentPlayer;  //input from player placed
             changePlayer();   //player changes then
@@ -83,15 +83,17 @@ public class GameEngine {
 
         public char computer() {
         if (!ended){
-            int position = -1;
-            do {
-                position = RANDOM.nextInt(9);
-            }while (elts[position] != ' ');
+            int position = -1;   //initial position of computer is outside boundary to make sure
+                                 // user places first
 
-            elts[position] = currentPlayer;
+            do {
+                position = RANDOM.nextInt(9);    // computer places its turn
+            }while (elts[position] != ' ');             // when it sees an empty on the grid
+
+            elts[position] = currentPlayer;             //switches back to user if game not over
             changePlayer();
         }
 
-        return  checkEnd();
+        return  checkEnd();                             //returns to check if game is over or not
     }
 }

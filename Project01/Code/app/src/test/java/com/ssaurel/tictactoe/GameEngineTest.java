@@ -13,12 +13,10 @@ import static org.junit.Assert.*;
 public class GameEngineTest {
     @Test
     public void isEnded() throws Exception {
-        boolean expected = true;
-        boolean input = true;
-
-        boolean test = (expected==input);
-        assertTrue(test); // Test is passed when both expected end and input end are same
-
+        boolean expected = false;
+        GameEngine test = new GameEngine();
+        boolean output = test.isEnded();
+        assertEquals(expected,output);
 
     }
 
@@ -39,21 +37,19 @@ public class GameEngineTest {
 
     }
 
-    @Test
-    public void changePlayer() throws Exception {
+    /*@Test
+    public void changePlayer() throws Exception  //input X is hardcoded in the system for the user.
+     {
 
         char expected = 'X';
-        char input = 'X';
-        char output;
 
-        output = input;
+        GameEngine output = new GameEngine();
 
-        assertEquals(expected,output); //test is passed since the input and output will be the same in the app and same is followed.
-                                       // The resultant being same as expected allows the test to pass, would have failed otherwise.
+        output.changePlayer();
 
+        assertEquals(expected, output);
 
-
-    }
+    }*/
 
     @Test
     public void elt() throws Exception {
@@ -65,25 +61,57 @@ public class GameEngineTest {
         GameEngine test = new GameEngine();
         output = test.elt(input1, input2);
 
-        assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
+        assertEquals(expected, output);
     }
 
-    @Test
+    /*@Test
     public void newGame() throws Exception {
-
-        GameEngine test = new GameEngine(); //Constructor Called
-    }
+    // Testing not possible since it is hardcoded that user will be X not O.
+    // Also no chance of other inputs to disrupt.
+    }*/
 
     @Test
-    public void checkEnd() throws Exception {
+    public void checkEnd() throws Exception //test passes only as returned value of this method
+                                            // being applicable when grid has an empty space.
+                            // hence passes to when expected is ' ' meaning value return is possible
+    {
+        char expected = ' ';
+        char output;
+
+        GameEngine test = new GameEngine();
+        output = test.checkEnd();
+
+        assertEquals(expected,output);
     }
 
     @Test
     public void computer() throws Exception {
+        char expected = ' ';
+        char output;
+
+        GameEngine test = new GameEngine();
+        output = test.computer();
+
+        assertEquals(expected,output); //checks if expected free space is also there in the grid or not
+                                       // initially there is free space on the grid so test passes
+
+
     }
 
 
     /* Input Space Partitioning*/
+
+    @Test
+    public void isEnded_notended() //expected is considered as false only since when true, the game ends hence invalid
+    {
+        boolean expected = false;
+        GameEngine test = new GameEngine();
+        boolean output = test.isEnded();
+        assertEquals(expected,output);
+
+    }
+
+
 
     @Test
 
@@ -138,6 +166,51 @@ public class GameEngineTest {
         assertEquals(expected, output);
 
     }
+
+    @Test
+    public void elt_maxpoint() //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
+    {
+        int input1 =2;
+        int input2 =2;
+        char expected =' ';
+        char output;
+
+        GameEngine test = new GameEngine();
+        output = test.elt(input1, input2);
+
+        assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
+    }
+
+    @Test
+    public void elt_minpoint() //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
+    {
+        int input1 =0;
+        int input2 =0;
+        char expected =' ';
+        char output;
+
+        GameEngine test = new GameEngine();
+        output = test.elt(input1, input2);
+
+        assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
+    }
+
+    @Test
+    public void elt_differentpoint() //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
+    {
+        int input1 =1;
+        int input2 =2;
+        char expected =' ';
+        char output;
+
+        GameEngine test = new GameEngine();
+        output = test.elt(input1, input2);
+
+        assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
+    }
+
+
+
 
 
 
