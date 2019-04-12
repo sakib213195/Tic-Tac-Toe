@@ -27,7 +27,7 @@ public class GameEngine {
 
 
     public void changePlayer() {
-        currentPlayer = (currentPlayer == 'X' ? 'O' : 'X');
+        currentPlayer = (currentPlayer == 'X' ? 'O' : 'X'); //player will continue as X
     }
 
     public char elt(int x, int y) {
@@ -39,7 +39,7 @@ public class GameEngine {
             elts[i] = ' ';
         }
 
-        currentPlayer = 'X';
+        currentPlayer = 'X'; //User hardcoded to X while starting the game.
         ended = false;
     }
 
