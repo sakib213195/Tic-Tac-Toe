@@ -2,6 +2,7 @@ package com.ssaurel.tictactoe;
 
 import org.junit.Test;
 
+
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -81,4 +82,47 @@ public class GameEngineTest {
     public void computer() throws Exception {
     }
 
+
+    /* Input Space Partitioning*/
+
+    @Test
+
+    public void play_posimaxgridpos ()// test checks if the input can be placed at the max positive point of the grid
+
+    {
+        int input1 = 2;
+        int input2 = 1;
+        char expected= ' ' ;
+        char output;
+
+
+        GameEngine test = new GameEngine();
+        output = test.play(input1,input2);
+
+        assertEquals(expected, output);
+
+    }
+
+    @Test
+
+    public void play_startgridpos() // test checks if the input can be placed at very first coordinates on the grid
+
+    {
+        int input1 = 0;
+        int input2 = 0;
+        char expected= ' ' ;
+        char output;
+
+
+        GameEngine test = new GameEngine();
+        output = test.play(input1,input2);
+
+        assertEquals(expected, output);
+
+    }
+    
+
+
+
 }
+

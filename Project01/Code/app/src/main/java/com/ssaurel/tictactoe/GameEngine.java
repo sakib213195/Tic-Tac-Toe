@@ -17,12 +17,14 @@ public class GameEngine {
         return ended;
     }
 
-    public char play(int x, int y) {
-        if (!ended && elts[3 * y + x] == ' ') {
-            elts[3 * y + x] = currentPlayer;
-            changePlayer();
+    public char play(int x, int y) // play method sets mark of the Current Player on the grid (x,y)
+    {
+        if (!ended && elts[3 * y + x] == ' ') //' ' represents an empty place at the grid where input can be placed
+        {
+            elts[3 * y + x] = currentPlayer;  //input from player placed
+            changePlayer();   //player changes then
         }
-        return checkEnd();
+        return checkEnd();          //method checks if game is over or not
     }
 
 
