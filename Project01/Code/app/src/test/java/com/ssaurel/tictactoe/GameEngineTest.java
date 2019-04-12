@@ -105,7 +105,7 @@ public class GameEngineTest {
 
     @Test
 
-    public void play_startgridpos() // test checks if the input can be placed at very first coordinates on the grid
+    public void play_startgridpos() // test checks if the input can be placed at very points on the grid
 
     {
         int input1 = 0;
@@ -120,7 +120,25 @@ public class GameEngineTest {
         assertEquals(expected, output);
 
     }
-    
+
+    @Test
+
+    public void play_diffgridpos() // test checks if the input can be placed at not same x and y coordinate on the grid
+
+    {
+        int input1 = 2;
+        int input2 = 0;
+        char expected= ' ' ;
+        char output;
+
+
+        GameEngine test = new GameEngine();
+        output = test.play(input1,input2);
+
+        assertEquals(expected, output);
+
+    }
+
 
 
 
