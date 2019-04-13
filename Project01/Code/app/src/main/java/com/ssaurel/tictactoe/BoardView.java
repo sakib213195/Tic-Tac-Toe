@@ -6,8 +6,8 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-        import android.view.MotionEvent;
-        import android.view.View;
+import android.view.MotionEvent;
+
 
 import com.ssaurel.tictactoe.GameEngine;
 import com.ssaurel.tictactoe.MainActivity;
@@ -22,9 +22,7 @@ public class BoardView extends View {
     private GameEngine gameEngine;
     private MainActivity activity;
 
-    public BoardView(Context context) {
-        super(context);
-    }
+
 
     public BoardView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -50,10 +48,13 @@ public class BoardView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         height = View.MeasureSpec.getSize(heightMeasureSpec);
         width = View.MeasureSpec.getSize(widthMeasureSpec);
-        eltW = (width - LINE_THICK) / 3;
+        setMeasuredDimension(width, height);
+
+
+        eltW = (width - LINE_THICK) / 3;            //LINETHICK = 5
         eltH = (height - LINE_THICK) / 3;
 
-        setMeasuredDimension(width, height);
+
     }
 
     @Override

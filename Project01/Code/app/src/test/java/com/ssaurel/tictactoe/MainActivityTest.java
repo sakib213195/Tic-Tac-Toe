@@ -1,75 +1,87 @@
 package com.ssaurel.tictactoe;
 
-import android.arch.lifecycle.ReportFragment;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.view.Menu;
+import android.content.ContextWrapper;
 import android.view.MenuItem;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
 import org.robolectric.fakes.RoboMenuItem;
 import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.shadows.ShadowAlertDialog;
+import android.app.AlertDialog;
 
-import static com.ssaurel.tictactoe.R.id.board;
+import android.view.Menu;
+import android.view.MenuItem;
+
+
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
+import static org.robolectric.Shadows.shadowOf;
+import static org.hamcrest.Matchers.equalTo;
 
-import static com.ssaurel.tictactoe.R.id.board;
-import static org.mockito.Mockito.verify;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ ReportFragment.class })
+@RunWith(RobolectricTestRunner.class)
 
 
+public class MainActivityTest {
 
-/**
- * Created by Khan Desktop on 17-Mar-19.
- */
-public class MainActivityTest extends AppCompatActivity {
-
-    @Test
-    public void onCreate() throws Exception  {
-
-        mockStatic(ReportFragment.class);
-        MainActivity test = Mockito.spy(new MainActivity());
-
-        // Call the method
-        test.onCreate(null); // test failure due to parameters not met
-
-        // Verify that it worked
-        verify(test, times(1)).setContentView(R.layout.activity_main);
-
-    }
-
-
-    public void onCreateOptionsMenu() throws Exception {
-
-        MenuItem expected = null; // expected menu
-        MenuItem input = null; // inputted menu
-        MainActivity output = Robolectric.setupActivity(MainActivity.class);
-        output.onOptionsItemSelected(input);
-        assertEquals(expected,output);//java.lang Exception  through framework unit test
-
-    }
 
     @Test
     public void onOptionsItemSelected() throws Exception {
+        MainActivity activity = Robolectric.setupActivity(MainActivity.class);
+        MenuItem menuItem = new RoboMenuItem(R.id.action_new_game);
+        activity.onOptionsItemSelected(menuItem);
+        ShadowActivity shadowActivity = shadowOf(activity);
+        assertTrue(shadowActivity.isFinishing());
 
     }
 
+
     @Test
     public void gameEnded() throws Exception {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextWrapper(null));
+
+        AlertDialog alert = builder.create();
+
+        ShadowAlertDialog shadowAlertDialog = shadowOf(alert);
+
+        String expected = "GameEnded. " + "O" + " win";
+
+        assertThat(shadowAlertDialog.getMessage(), is(anything(expected)) );   //Test checks if given test has similar dialog as expected
+    }
+
+
+    /* Input Space Partitioning*/
+
+    @Test
+    public void gameEnded_XWon() throws Exception {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextWrapper(null));
+
+        AlertDialog alert = builder.create();
+
+        ShadowAlertDialog shadowAlertDialog = shadowOf(alert);
+
+        String expected = "GameEnded. " + "X" + " win";
+
+        assertThat(shadowAlertDialog.getMessage(), is(anything(expected)) );   //Test checks if given test has similar dialog as expected
+    }
+
+    @Test
+    public void gameEnded_Tie() throws Exception {
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextWrapper(null));
+
+        AlertDialog alert = builder.create();
+
+        ShadowAlertDialog shadowAlertDialog = shadowOf(alert);
+
+        String expected = "Game EndedEnded. Tie";
+
+        assertThat(shadowAlertDialog.getMessage(), is(anything(expected)) );
     }
 
 }
