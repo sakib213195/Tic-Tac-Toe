@@ -31,12 +31,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_new_game) {
-            newGame();
+    public boolean onOptionsItemSelected(MenuItem item) // 1 - graph coverage
+
+    {
+        if (item.getItemId() == R.id.action_new_game)
+        {
+            newGame();                                      // 2 - graph coverage
         }
 
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);           // 4 - graph coverage
     }
 
     public void gameEnded(char c) {
