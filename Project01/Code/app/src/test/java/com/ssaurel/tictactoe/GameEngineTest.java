@@ -231,8 +231,8 @@ public class GameEngineTest {
     @Test
     public void elt_negpoint()  //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
     {
-        int input1 =-1;
-        int input2 =-2;
+        int input1 =-2;
+        int input2 =-1;
         char expected =' ';
         char output;
 
