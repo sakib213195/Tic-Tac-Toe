@@ -17,13 +17,13 @@ public class GameEngine {
         return ended;
     }
 
-    public char play(int x, int y) // play method sets mark of the Current Player on the grid (x,y)
+    public char play(int x, int y)// play method sets mark of the Current Player on the grid (x,y)
                                     // 1 - graph coverage
     {
-        if (!ended && elt(x,y) == ' ') //' ' represents an empty place at the grid where input can be placed
+        if (!ended && elt(Math.abs(x),Math.abs(y)) == ' ') //' ' represents an empty place at the grid where input can be placed
                                         // // 2 - graph coverage
         {
-            elts[3 * y + x] = currentPlayer;  //input from player placed
+            elts[3 * (Math.abs(y)) + (Math.abs(x))] = currentPlayer;  //input from player placed
             changePlayer();   //player changes then
         }
         return checkEnd();          //method checks if game is over or not
@@ -37,8 +37,9 @@ public class GameEngine {
                                                             // 2,3,4 - graph coverage
     }
 
-    public char elt(int x, int y) {
-        return elts[3 * y + x];
+    public char elt(int x, int y)  {
+
+        return elts[3 * (Math.abs(y)) + (Math.abs(x))];
     }
 
     public void newGame() // 1 - graph coverage
@@ -53,7 +54,7 @@ public class GameEngine {
         ended = false;       // 3 - graph coverage
     }
 
-    public char checkEnd()          // 1 - graph coverage
+    public char checkEnd()     // 1 - graph coverage
     {
 
         for (int i = 0; i < 3; i++)      // 6 - graph coverage
@@ -89,6 +90,7 @@ public class GameEngine {
                 return elt(2, 0);                               // 16 - graph coverage
             }
 
+
             for (int i = 0; i < 9; i++)                 // 21 - graph coverage
 
             {
@@ -102,7 +104,7 @@ public class GameEngine {
 
         }
 
-        public char computer()          // 1 - graph coverage
+        public char computer()         // 1 - graph coverage
         {
         if (!ended){
             int position = -1;   //initial position of computer is outside boundary to make sure

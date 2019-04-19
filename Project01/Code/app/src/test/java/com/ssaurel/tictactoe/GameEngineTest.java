@@ -38,7 +38,7 @@ public class GameEngineTest {
     }
 
     /*@Test
-    public void changePlayer() throws Exception  //input X is hardcoded in the system for the user.
+    public void changePlayer() //input X is hardcoded in the system for the user.
      {
 
         char expected = 'X';
@@ -47,13 +47,13 @@ public class GameEngineTest {
 
         output.changePlayer();
 
-        assertEquals(expected, output);
+        assertEquals(expected,output);
 
     }*/
 
     @Test
     public void elt() throws Exception {
-        int input1 =2;
+        int input1 = 2;
         int input2 =2;
         char expected =' ';
         char output;
@@ -66,7 +66,7 @@ public class GameEngineTest {
 
     /*@Test
     public void newGame() throws Exception {
-    // Testing not possible since it is hardcoded that user will be X not O.
+    // Testing not done since it is hardcoded that user will be X not O.
     // Also no chance of other inputs to disrupt.
     }*/
 
@@ -102,7 +102,7 @@ public class GameEngineTest {
     /* Input Space Partitioning*/
 
     @Test
-    public void isEnded_notended() //expected is considered as false only since when true, the game ends hence invalid
+    public void isEnded_notended() throws Exception //expected is considered as false only since when true, the game ends hence invalid
     {
         boolean expected = false;
         GameEngine test = new GameEngine();
@@ -168,6 +168,25 @@ public class GameEngineTest {
     }
 
     @Test
+
+    public void play_neggridpos() // test checks if the application can deal  negative x and y inputs
+                                 // coordinate on the grid
+
+    {
+        int input1 = -2;
+        int input2 = -1;
+        char expected= ' ' ;
+        char output;
+
+
+        GameEngine test = new GameEngine();
+        output = test.play(input1,input2);
+
+        assertEquals(expected, output);
+
+    }
+
+    @Test
     public void elt_maxpoint() //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
     {
         int input1 =2;
@@ -209,11 +228,19 @@ public class GameEngineTest {
         assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
     }
 
+    @Test
+    public void elt_negpoint()  //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
+    {
+        int input1 =-1;
+        int input2 =-2;
+        char expected =' ';
+        char output;
 
+        GameEngine test = new GameEngine();
+        output = test.elt(input1, input2);
 
-
-
-
+        assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
+    }
 
 }
 
