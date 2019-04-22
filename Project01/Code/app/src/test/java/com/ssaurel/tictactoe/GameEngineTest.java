@@ -14,7 +14,7 @@ public class GameEngineTest {
     @Test
     public void isEnded() throws Exception {
         boolean expected = false;
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         boolean output = test.isEnded();
         assertEquals(expected,output);
 
@@ -30,7 +30,7 @@ public class GameEngineTest {
         char output;
 
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.play(input1,input2);
 
         assertEquals(expected, output); //passed test as the input values allow method to return successfully
@@ -58,7 +58,7 @@ public class GameEngineTest {
         char expected =' ';
         char output;
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.elt(input1, input2);
 
         assertEquals(expected, output);
@@ -78,7 +78,7 @@ public class GameEngineTest {
         char expected = ' ';
         char output;
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.checkEnd();
 
         assertEquals(expected,output);
@@ -89,7 +89,7 @@ public class GameEngineTest {
         char expected = ' ';
         char output;
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.computer();
 
         assertEquals(expected,output); //checks if expected free space is also there in the grid or not
@@ -105,7 +105,7 @@ public class GameEngineTest {
     public void isEnded_notended() throws Exception //expected is considered as false only since when true, the game ends hence invalid
     {
         boolean expected = false;
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         boolean output = test.isEnded();
         assertEquals(expected,output);
 
@@ -124,7 +124,7 @@ public class GameEngineTest {
         char output;
 
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.play(input1,input2);
 
         assertEquals(expected, output);
@@ -142,7 +142,7 @@ public class GameEngineTest {
         char output;
 
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.play(input1,input2);
 
         assertEquals(expected, output);
@@ -160,7 +160,7 @@ public class GameEngineTest {
         char output;
 
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.play(input1,input2);
 
         assertEquals(expected, output);
@@ -169,17 +169,20 @@ public class GameEngineTest {
 
     @Test
 
-    public void play_neggridpos() // test checks if the application can deal  negative x and y inputs
+    public void play_neggridpos()  //since graphic based interface, no chance for negative input,
+                                   // if negative input arises, system will ignore the negative sign
+                                   //and will consider as positive
+                                  // test checks if the application can deal  negative x and y inputs
                                  // coordinate on the grid
 
     {
         int input1 = -2;
         int input2 = -1;
-        char expected= ' ' ;
+        char expected = ' ';
         char output;
 
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.play(input1,input2);
 
         assertEquals(expected, output);
@@ -194,7 +197,7 @@ public class GameEngineTest {
         char expected =' ';
         char output;
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.elt(input1, input2);
 
         assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
@@ -208,7 +211,7 @@ public class GameEngineTest {
         char expected =' ';
         char output;
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.elt(input1, input2);
 
         assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
@@ -222,25 +225,43 @@ public class GameEngineTest {
         char expected =' ';
         char output;
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.elt(input1, input2);
 
         assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
     }
 
     @Test
-    public void elt_negpoint()  //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
+    public void elt_negpoint()   //since graphic based interface, no chance for negative input,
+                                 // if negative input arises, system will ignore the negative sign
+                                 //and will consider as positive
+                                //grid has 9 spaces ranging from 0 to 8 meaning (x,y) can be from (0,0) to (2,2)
     {
         int input1 =-2;
         int input2 =-1;
         char expected =' ';
         char output;
 
-        GameEngine test = new GameEngine();
+        GameEngine test = new GameEngine(null);
         output = test.elt(input1, input2);
 
         assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
     }
+
+    @Test
+    public void checkEnd_empty() throws Exception //test passes only as returned value of this method
+    // being applicable when grid has an empty space.
+    // hence passes to when expected is ' ' meaning value return is possible
+    {
+        char expected = ' ';
+        char output;
+
+        GameEngine test = new GameEngine(null);
+        output = test.checkEnd();
+
+        assertEquals(expected,output);
+    }
+
 
 }
 

@@ -1,5 +1,11 @@
 package com.ssaurel.tictactoe;
+
+import android.content.Context;
+
 import java.util.Random;
+
+
+
 
 public class GameEngine {
 
@@ -7,11 +13,16 @@ public class GameEngine {
     private char[] elts;
     private char currentPlayer;
     private boolean ended;
+    private GameEngine game;
 
-    public GameEngine() {
+
+
+    public GameEngine (Context ctx){
         elts = new char[9];
-        newGame();
+        newGame(ctx);
+
     }
+
 
     public boolean isEnded() {
         return ended;
@@ -37,12 +48,13 @@ public class GameEngine {
                                                             // 2,3,4 - graph coverage
     }
 
-    public char elt(int x, int y)  {
+    public char elt(int x, int y)   //method used for returning the formula used to make logic in app
+    {
 
         return elts[3 * (Math.abs(y)) + (Math.abs(x))];
     }
 
-    public void newGame() // 1 - graph coverage
+    public void newGame(Context ctx) // 1 - graph coverage
 
     {
         for (int i = 0; i < elts.length; i++)      // 4 - graph coverage

@@ -1,5 +1,7 @@
 package com.ssaurel.tictactoe;
 
+import android.app.Instrumentation;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -13,13 +15,15 @@ public class MainActivity extends AppCompatActivity {
 
     private BoardView boardView;
     private GameEngine gameEngine;
+    public Context c;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         boardView = (BoardView) findViewById(board);
-        gameEngine = new GameEngine();
+        gameEngine = new GameEngine(c);
         boardView.setGameEngine(gameEngine);
         boardView.setMainActivity(this);
     }
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void newGame() {
-        gameEngine.newGame();
+        gameEngine.newGame(null);
         boardView.invalidate();
     }
 
