@@ -24,6 +24,8 @@ public class BoardView extends View {
 
 
 
+
+
     public BoardView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         gridPaint = new Paint();
@@ -33,6 +35,9 @@ public class BoardView extends View {
         oPaint.setStrokeWidth(ELT_STROKE_WIDTH);
         xPaint = new Paint(oPaint);
         xPaint.setColor(Color.BLUE);
+
+
+
     }
 
     public void setMainActivity(MainActivity a) {
