@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import static com.ssaurel.tictactoe.R.id.board;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,19 +48,29 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view)  {
-                if((User.length()>0) && (User.length()<=5)){
-                User.setText(Textchange.getText());}
 
-                if((User.length()>=6) || (User.length()<=0)) {
-                    Toast.makeText(getApplicationContext(), "Outside Limit", Toast.LENGTH_SHORT).show();
-                    User.setText(null);
-                    btnChange.setOnClickListener(null);
+                if((Textchange.length()>0) && (Textchange.length()<=5)){
+                User.setText(Textchange.getText());
+
                 }
+                if((Textchange.length()<=0)) {
+                    Toast.makeText(getApplicationContext(), "Outside Limit", Toast.LENGTH_SHORT).show();
+                    User.setText(Textchange.getText());
+
+                }
+
+                if((Textchange.length()>5)) {
+                    Toast.makeText(getApplicationContext(), "Outside Limit", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
 
         });
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         gameEngine.newGame(null);
         boardView.invalidate();
     }
+
+
 
 
 }

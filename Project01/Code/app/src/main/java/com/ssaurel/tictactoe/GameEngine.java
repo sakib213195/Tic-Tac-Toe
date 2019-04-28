@@ -119,7 +119,7 @@ public class GameEngine {
         public char computer()         // 1 - graph coverage
         {
         if (!ended){
-            int position = -1;   //initial position of computer is outside boundary to make sure
+            int position;        //initial position of computer is outside boundary to make sure
                                  // user places first
                                  // 2 - graph coverage
 

@@ -9,9 +9,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.repeatedlyUntil;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.supportsInputMethods;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.*;
@@ -27,6 +31,7 @@ public class MainActivityUITest {
 
     private String name1 = "Sakib";
     private String name2 = "";
+    private String name3 = "Arsenal";
 
 
     @Test
@@ -55,8 +60,16 @@ public class MainActivityUITest {
 
     }
 
+    @Test
+    public void TestUserInputoutsideLimit2() throws Exception {
 
+        Espresso.onView(withId(R.id.Textchange)).perform(typeText(name3));
 
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(withId(R.id.btnChange)).perform(click());
+
+    }
 
 
 }
