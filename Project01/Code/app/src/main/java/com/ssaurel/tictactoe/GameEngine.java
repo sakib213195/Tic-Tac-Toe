@@ -1,6 +1,7 @@
 package com.ssaurel.tictactoe;
 
 import android.content.Context;
+
 import java.util.Random;
 
 
@@ -11,8 +12,7 @@ public class GameEngine  {
     private static final Random RANDOM = new Random();
     private char[] elts;
     private char currentPlayer;
-    private boolean ended;
-    private GameEngine game;
+    private boolean ended = false;      //Initially game is considered not to be ended
 
 
 
@@ -25,7 +25,9 @@ public class GameEngine  {
 
     public boolean isEnded()        //method checks if game ended or not
     {
-        return ended;
+
+        return ended=false;
+
     }
 
     public char play(int x, int y)// play method sets mark of the Current Player on the grid (x,y)
@@ -74,24 +76,25 @@ public class GameEngine  {
     public char checkEnd()     // 1 - graph coverage
     {
 
-        for (int i = 0; i < 3; i++)      // 2,5,6 - graph coverage
-        {
-            if (elt(i, 0) != ' ' && elt(i, 0) == elt(i, 1) && elt(i, 1) == elt(i, 2))
 
+            for (int i = 0; i < 3; i++)      // 2,5,6 - graph coverage
             {
-                ended = true;                   // 3 - graph coverage
-                return elt(i, 0);            // 3 - graph coverage
+                if (elt(i, 0) != ' ' && elt(i, 0) == elt(i, 1) && elt(i, 1) == elt(i, 2))
+
+                {
+                    ended = true;                   // 3 - graph coverage
+                    return elt(i, 0);            // 3 - graph coverage
+                }
+
+
+                if (elt(0, i) != ' ' && elt(0, i) == elt(1, i) && elt(1, i) == elt(2, i))
+
+
+                {
+                    ended = true;                                           // 4 - graph coverage
+                    return elt(0, i);                                   // 4 - graph coverage
+                }
             }
-
-
-            if (elt(0, i) != ' ' && elt(0, i) == elt(1, i) && elt(1, i) == elt(2, i))
-
-
-            {
-                ended = true;                                           // 4 - graph coverage
-                return elt(0, i);                                   // 4 - graph coverage
-            }
-        }
 
             if (elt(0, 0) != ' ' && elt(0, 0) == elt(1, 1) && elt(1, 1) == elt(2, 2))
 
@@ -112,14 +115,16 @@ public class GameEngine  {
 
             {
 
-                if(elts[i]==' ')
-                    return  ' ';                    // 10 - graph coverage
+                if (elts[i] == ' ')
+                    return ' ';                    // 10 - graph coverage
 
             }
 
-        return 'T';                                 // 12 - graph coverage
+            return 'T';                                 // 12 - graph coverage
+
 
         }
+
 
         public char computer()         // 1 - graph coverage
         {
