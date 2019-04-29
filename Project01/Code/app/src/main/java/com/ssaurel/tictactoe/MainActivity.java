@@ -50,23 +50,24 @@ public class MainActivity extends AppCompatActivity {
 
         btnChange.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View view)  {
 
-                vibrator.vibrate(500);
+                vibrator.vibrate(500);                             // 1 - graph coverage
 
                 if((Textchange.length()>0) && (Textchange.length()<=5)){
-                User.setText(Textchange.getText());
+                User.setText(Textchange.getText());                            // 2 - graph coverage
 
                 }
                 if((Textchange.length()<=0)) {
-                    Toast.makeText(getApplicationContext(), "Outside Limit", Toast.LENGTH_SHORT).show();
-                    User.setText(Textchange.getText());
+                    Toast.makeText(getApplicationContext(), "Outside Limit", Toast.LENGTH_SHORT).show(); // 3 - graph coverage
+                    User.setText(Textchange.getText());                     // 3 - graph coverage
 
                 }
 
                 if((Textchange.length()>5)) {
-                    Toast.makeText(getApplicationContext(), "Outside Limit", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Outside Limit", Toast.LENGTH_SHORT).show(); // 4 - graph coverage
 
                 }
 
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             newGame();                                      // 2 - graph coverage
         }
 
-        return super.onOptionsItemSelected(item);           // 4 - graph coverage
+        return super.onOptionsItemSelected(item);           // 3 - graph coverage
     }
 
     public void gameEnded(char c) {

@@ -74,50 +74,50 @@ public class GameEngine  {
     public char checkEnd()     // 1 - graph coverage
     {
 
-        for (int i = 0; i < 3; i++)      // 6 - graph coverage
+        for (int i = 0; i < 3; i++)      // 2,5,6 - graph coverage
         {
             if (elt(i, 0) != ' ' && elt(i, 0) == elt(i, 1) && elt(i, 1) == elt(i, 2))
-                                                                            // 3 - graph coverage
+
             {
-                ended = true;                   // 5 - graph coverage
-                return elt(i, 0);            // 7 - graph coverage
+                ended = true;                   // 3 - graph coverage
+                return elt(i, 0);            // 3 - graph coverage
             }
 
 
             if (elt(0, i) != ' ' && elt(0, i) == elt(1, i) && elt(1, i) == elt(2, i))
-                                                                        // 9 - graph coverage
+
 
             {
-                ended = true;                                           // 8 - graph coverage
-                return elt(0, i);                                   // 10 - graph coverage
+                ended = true;                                           // 4 - graph coverage
+                return elt(0, i);                                   // 4 - graph coverage
             }
         }
 
             if (elt(0, 0) != ' ' && elt(0, 0) == elt(1, 1) && elt(1, 1) == elt(2, 2))
-                                                                // 11 - graph coverage
+
             {
-                ended = true;                                      // 12 - graph coverage
-                return elt(0, 0);                           // 13 - graph coverage
+                ended = true;                                      // 7 - graph coverage
+                return elt(0, 0);                           // 7 - graph coverage
             }
 
             if (elt(2, 0) != ' ' && elt(2, 0) == elt(1, 1) && elt(1, 1) == elt(0, 2))
-                                                                        // 14 - graph coverage
+
             {
-                ended = true;                                         // 15 - graph coverage
-                return elt(2, 0);                               // 16 - graph coverage
+                ended = true;                                         // 8 - graph coverage
+                return elt(2, 0);                              // 8 - graph coverage
             }
 
 
-            for (int i = 0; i < 9; i++)                 // 21 - graph coverage
+            for (int i = 0; i < 9; i++)                 // 9,11 - graph coverage
 
             {
 
-                if(elts[i]==' ')                    // 18 - graph coverage
-                    return  ' ';                    // 20 - graph coverage
+                if(elts[i]==' ')
+                    return  ' ';                    // 10 - graph coverage
 
             }
 
-        return 'T';                                 // 22 - graph coverage
+        return 'T';                                 // 12 - graph coverage
 
         }
 
@@ -132,13 +132,11 @@ public class GameEngine  {
                 position = RANDOM.nextInt(9);    // user places his turn
             }while (elts[position] != ' ');             // when it sees an empty on the grid
                                                         // 4 - graph coverage
-
             elts[position] = currentPlayer;
             changePlayer();                         //switches back to user if game not over
                                                     // 5 - graph coverage
 
         }
-
             return checkEnd();              //returns to check if the game is over or not
 
     }
