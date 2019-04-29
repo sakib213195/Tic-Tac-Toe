@@ -1,10 +1,10 @@
 package com.ssaurel.tictactoe;
 
-import android.app.Instrumentation;
+
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.UrlQuerySanitizer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 import static com.ssaurel.tictactoe.R.id.board;
 
@@ -28,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnChange;
     private EditText Textchange;
     private TextView User;
+    Vibrator vibrator;
+
 
 
 
@@ -44,10 +45,15 @@ public class MainActivity extends AppCompatActivity {
         Textchange = (EditText) findViewById(R.id.Textchange);
         User = (TextView) findViewById(R.id.User);
 
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+
         btnChange.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view)  {
+
+                vibrator.vibrate(500);
 
                 if((Textchange.length()>0) && (Textchange.length()<=5)){
                 User.setText(Textchange.getText());
@@ -71,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -84,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     {
         if (item.getItemId() == R.id.action_new_game)
         {
+
             newGame();                                      // 2 - graph coverage
         }
 
@@ -91,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gameEnded(char c) {
-        String msg = (c == 'T') ? "Game EndedEnded. Tie" : "Game Ended. " + c + " win";
+        String msg = (c == 'T') ? "Game Ended. Tie" : "Game Ended. " + c + " win";
 
         new AlertDialog.Builder(this).setTitle("Tic Tac Toe").
                 setMessage(msg).
@@ -107,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
         gameEngine.newGame(null);
         boardView.invalidate();
     }
-
-
 
 
 }

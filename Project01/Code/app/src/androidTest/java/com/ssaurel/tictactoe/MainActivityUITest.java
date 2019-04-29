@@ -3,6 +3,7 @@ package com.ssaurel.tictactoe;
 import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.View;
 
 
 import org.junit.Rule;
@@ -69,6 +70,20 @@ public class MainActivityUITest {
 
         Espresso.onView(withId(R.id.btnChange)).perform(click());
 
+    }
+
+    @Test
+
+    public  void TestRun() throws  Exception{
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
+        Espresso.onView(withId(R.id.board)).perform(click());
     }
 
 

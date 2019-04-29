@@ -1,13 +1,12 @@
 package com.ssaurel.tictactoe;
 
 import android.content.Context;
-
 import java.util.Random;
 
 
 
 
-public class GameEngine {
+public class GameEngine  {
 
     private static final Random RANDOM = new Random();
     private char[] elts;
@@ -18,21 +17,23 @@ public class GameEngine {
 
 
     public GameEngine (Context ctx){
-        elts = new char[9];
+        elts = new char[9];                 //The grid of 3X3=9 is formed as array of 9
         newGame(ctx);
 
     }
 
 
-    public boolean isEnded() {
+    public boolean isEnded()        //method checks if game ended or not
+    {
         return ended;
     }
 
     public char play(int x, int y)// play method sets mark of the Current Player on the grid (x,y)
                                     // 1 - graph coverage
     {
-        if (!ended && elt(Math.abs(x),Math.abs(y)) == ' ') //' ' represents an empty place at the grid where input can be placed
-                                        // // 2 - graph coverage
+        if (!ended && elt(Math.abs(x),Math.abs(y)) == ' ') //' ' represents an empty place at the
+                                                           // grid where input can be placed
+                                                          // 2 - graph coverage
         {
             elts[3 * (Math.abs(y)) + (Math.abs(x))] = currentPlayer;  //input from player placed
             changePlayer();   //player changes then
@@ -64,7 +65,11 @@ public class GameEngine {
 
         currentPlayer = 'X'; //User hardcoded to X while starting the game.
         ended = false;       // 3 - graph coverage
+
     }
+
+
+
 
     public char checkEnd()     // 1 - graph coverage
     {
@@ -118,22 +123,24 @@ public class GameEngine {
 
         public char computer()         // 1 - graph coverage
         {
+
         if (!ended){
-            int position;        //initial position of computer is outside boundary to make sure
+            int position;         //initial position of computer is outside boundary to make sure
                                  // user places first
                                  // 2 - graph coverage
-
-
             do {
-                position = RANDOM.nextInt(9);    // computer places its turn
+                position = RANDOM.nextInt(9);    // user places his turn
             }while (elts[position] != ' ');             // when it sees an empty on the grid
                                                         // 4 - graph coverage
 
-            elts[position] = currentPlayer;             //switches back to user if game not over
-            changePlayer();                             // 5 - graph coverage
+            elts[position] = currentPlayer;
+            changePlayer();                         //switches back to user if game not over
+                                                    // 5 - graph coverage
+
         }
 
-        return  checkEnd();                             //returns to check if game is over or not
-                                                        // 6 - graph coverage
+            return checkEnd();              //returns to check if the game is over or not
+
     }
+
 }

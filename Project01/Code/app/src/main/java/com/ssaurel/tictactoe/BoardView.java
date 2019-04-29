@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.MotionEvent;
 
 
-import com.ssaurel.tictactoe.GameEngine;
-import com.ssaurel.tictactoe.MainActivity;
-
 public class BoardView extends View {
 
     private static final int LINE_THICK = 5;
@@ -24,19 +21,15 @@ public class BoardView extends View {
 
 
 
-
-
     public BoardView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         gridPaint = new Paint();
-        oPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        oPaint.setColor(Color.RED);
-        oPaint.setStyle(Paint.Style.STROKE);
-        oPaint.setStrokeWidth(ELT_STROKE_WIDTH);
+        oPaint = new Paint(Paint.ANTI_ALIAS_FLAG);          //type of design of O is placed
+        oPaint.setColor(Color.BLACK);                         //color of O is placed
+        oPaint.setStyle(Paint.Style.STROKE);                //style of O is placed
+        oPaint.setStrokeWidth(ELT_STROKE_WIDTH);            //Set the width for stroking
         xPaint = new Paint(oPaint);
-        xPaint.setColor(Color.BLUE);
-
-
+        xPaint.setColor(Color.GRAY);
 
     }
 
@@ -50,9 +43,10 @@ public class BoardView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        height = View.MeasureSpec.getSize(heightMeasureSpec);
-        width = View.MeasureSpec.getSize(widthMeasureSpec);
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) //
+    {
+        height = View.MeasureSpec.getSize(heightMeasureSpec);       //extraction of height from the supplied measure specification.
+        width = View.MeasureSpec.getSize(widthMeasureSpec);       //extraction of width from the supplied measure specification
         setMeasuredDimension(width, height);
 
 
@@ -63,17 +57,25 @@ public class BoardView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas)
+    {
         drawGrid(canvas);
         drawBoard(canvas);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) // converts a point touched on the screen to a
+                                                   // case on the grid
+
+    {
+
+
         if (!gameEngine.isEnded()  &&  event.getAction() == MotionEvent.ACTION_DOWN) {
             int x = (int) (event.getX() / eltW);
             int y = (int) (event.getY() / eltH);
             char win = gameEngine.play(x, y);
+
+
             invalidate();
 
             if (win != ' ') {
@@ -83,9 +85,6 @@ public class BoardView extends View {
                 win = gameEngine.computer();
                 invalidate();
 
-                if (win != ' ') {
-                    activity.gameEnded(win);
-                }
             }
         }
 
@@ -105,14 +104,15 @@ public class BoardView extends View {
             // vertical lines
             float left = eltW * (i + 1);
             float right = left + LINE_THICK;
-            float top = 0;
-            float bottom = height;
+            float top = 0;                 //starts horizontally from extreme left of the rectangle
+            float bottom = height;         //goes till the height
 
             canvas.drawRect(left, top, right, bottom, gridPaint);
 
+
             // horizontal lines
-            float left2 = 0;
-            float right2 = width;
+            float left2 = 0;           //starts horizontally from extreme left of the rectangle
+            float right2 = width;       //goes till the width
             float top2 = eltH * (i + 1);
             float bottom2 = top2 + LINE_THICK;
 
@@ -120,14 +120,15 @@ public class BoardView extends View {
         }
     }
 
-    private void drawElt(Canvas canvas, char c, int x, int y) {
+    private void drawElt(Canvas canvas, char c, int x, int y)       //O being shaped
+    {
         if (c == 'O') {
             float cx = (eltW * x) + eltW / 2;
             float cy = (eltH * y) + eltH / 2;
 
             canvas.drawCircle(cx, cy, Math.min(eltW, eltH) / 2 - ELT_MARGIN * 2, oPaint);
 
-        } else if (c == 'X') {
+        } else if (c == 'X') {                                  //X being shaped
             float startX = (eltW * x) + ELT_MARGIN;
             float startY = (eltH * y) + ELT_MARGIN;
             float endX = startX + eltW - ELT_MARGIN * 2;
@@ -143,5 +144,6 @@ public class BoardView extends View {
             canvas.drawLine(startX2, startY2, endX2, endY2, xPaint);
         }
     }
+
 
 }

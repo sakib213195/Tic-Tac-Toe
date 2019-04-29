@@ -1,13 +1,21 @@
 package com.ssaurel.tictactoe;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.IBinder;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.rule.ServiceTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.TimeoutException;
+
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsInstanceOf.any;
 import static org.junit.Assert.*;
 
 /**
@@ -29,8 +37,8 @@ public class GameEngineIntegrationTest {
     @Test
     public void isEnded() throws Exception {
         boolean expected = false;
-        boolean output = engine.isEnded();
-        assertEquals(expected,output);
+        boolean actual = engine.isEnded();
+        assertEquals(expected,actual);
     }
 
     @Test
@@ -40,10 +48,10 @@ public class GameEngineIntegrationTest {
         int input1 = 2;
         int input2 = 1;
         char expected= ' ' ;
-        char output;
-        output = engine.play(input1,input2);
+        char actual;
+        actual = engine.play(input1,input2);
 
-        assertEquals(expected, output);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -53,10 +61,10 @@ public class GameEngineIntegrationTest {
         int input1 = -1;
         int input2 = -2;
         char expected= ' ' ;
-        char output;
-        output = engine.play(input1,input2);
+        char actual;
+        actual = engine.play(input1,input2);
 
-        assertEquals(expected, output);
+        assertEquals(expected, actual);
     }
 
 
@@ -65,11 +73,11 @@ public class GameEngineIntegrationTest {
         int input1 = 2;
         int input2 =2;
         char expected =' ';
-        char output;
+        char actual;
 
-        output = engine.elt(input1, input2);
+        actual = engine.elt(input1, input2);
 
-        assertEquals(expected, output);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -78,35 +86,34 @@ public class GameEngineIntegrationTest {
         int input1 =-2;
         int input2 =-1;
         char expected =' ';
-        char output;
+        char actual;
 
-        output = engine.elt(input1, input2);
+        actual = engine.elt(input1, input2);
 
-        assertEquals(expected, output); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
+        assertEquals(expected, actual); //test is passed until the input values are not increased enough to throw Out of Bounds Exception. Max limit is 8.
     }
 
-    @Test
-    public void newGame() throws Exception {
-    }
 
     @Test
     public void checkEnd() throws Exception {
         char expected = ' ';
-        char output;
-        output = engine.checkEnd();
+        char actual;
+        actual = engine.checkEnd();
 
-        assertEquals(expected,output);
+        assertEquals(expected,actual);
     }
+
 
     @Test
     public void computer() throws Exception {
         char expected = ' ';
-        char output;
+        char actual;
 
-        output = engine.computer();
+        actual = engine.computer();
 
-        assertEquals(expected,output); //checks if expected free space is also there in the grid or not
-        // initially there is free space on the grid so test passes
+        assertEquals(expected,actual); //checks if expected free space is also there in the grid or not
+                                       // initially there is free space on the grid so test passes
     }
+
 
 }
