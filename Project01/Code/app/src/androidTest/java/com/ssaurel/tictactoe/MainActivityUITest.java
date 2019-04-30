@@ -36,7 +36,8 @@ public class MainActivityUITest {
 
 
     @Test
-    public void TestUserInputwithinLimit() throws Exception {
+    public void TestUserInputwithinLimit() throws Exception //length of name within limit
+    {
 
         Espresso.onView(withId(R.id.Textchange)).perform(typeText(name1));
 
@@ -49,7 +50,8 @@ public class MainActivityUITest {
     }
 
     @Test
-    public void TestUserInputoutsideLimit() throws Exception {
+    public void TestUserInputoutsideLimit() throws Exception //length of name is 0
+    {
 
         Espresso.onView(withId(R.id.Textchange)).perform(typeText(name2));
 
@@ -61,8 +63,10 @@ public class MainActivityUITest {
 
     }
 
+
     @Test
-    public void TestUserInputoutsideLimit2() throws Exception {
+    public void TestUserInputoutsideLimit2() throws Exception //length of name outside limit
+    {
 
         Espresso.onView(withId(R.id.Textchange)).perform(typeText(name3));
 
