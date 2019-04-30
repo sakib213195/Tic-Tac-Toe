@@ -27,7 +27,9 @@ public class MainActivityIntegrationTest {
 
         ViewInteraction appbtnChange = onView(allOf(withId(R.id.btnChange),isDisplayed()));
         ViewInteraction app = onView(allOf(withId(R.id.board),isDisplayed()));
+
         appbtnChange.perform(click());
+
         app.perform(click());
         app.perform(click());
         app.perform(click());
