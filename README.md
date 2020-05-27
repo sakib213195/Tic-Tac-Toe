@@ -9,4 +9,4 @@ Types of Testing done:
 
 3.Integration Testing
 
-4. UI Testing with Espresso
+4.UI Testing with Espresso
